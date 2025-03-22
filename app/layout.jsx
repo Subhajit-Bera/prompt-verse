@@ -1,15 +1,16 @@
 import "@styles/globals.css";
 import Nav from "@components/Nav";
-import Provider from "@components/Provider";
+// import Provider from "@components/Provider";
 export const metadata = {
     title: "Prompverse",
-    description: "Discover & Share AI Prompts",
+    description: "Explore and Share powerful AI-generated prompts effortlessly.",
 };
 
 const ReactLayout = ({ children }) => {
     return (
         <html lang='en'>
             <body>
+                {/* This will change the backgrond */}
                 <div className='main'>
                     <div className='gradient' />
                 </div>
