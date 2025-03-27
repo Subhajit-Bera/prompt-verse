@@ -4,7 +4,8 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react';
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 const Nav = () => {
-  const isLoggedIn = true;
+
+  const { data: session } = useSession();
   const [providers, setProviders] = useState([]);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
@@ -31,7 +32,7 @@ const Nav = () => {
       {/* Desktop Navigation */}
       {/* In small screen it will be flex otherwise hidden */}
       <div className='sm:flex hidden'>
-        {isLoggedIn ? (
+        {session?.user ? (
           <div className='flex gap-3 md:gap-5'>
             <Link href='/create-prompt' className='black_btn'>
               Create Post
@@ -43,7 +44,7 @@ const Nav = () => {
 
             <Link href='/profile'>
               <Image
-                src="/assets/images/logo.svg"
+                src={session?.user.image}
                 width={30}
                 height={30}
                 className='rounded-full'
@@ -74,10 +75,10 @@ const Nav = () => {
       {/* Mobile Navigation */}
       <div className='sm:hidden flex relative'>
         {
-          isLoggedIn ? (
+          session?.user ? (
             <div className='flex'>
               <Image
-                src="/assets/images/logo.svg"
+                src={session?.user.image}
                 width={30}
                 height={30}
                 className='rounded-full'
